@@ -1,13 +1,18 @@
-# DNA Sequence Analyzer
+import sys
 
-# Read FASTA file safely
-with open("sample.fasta", "r") as file:
+# Check if user provided a file
+if len(sys.argv) < 2:
+    print("Usage: python main.py <fasta_file>")
+    sys.exit()
+
+filename = sys.argv[1]
+
+# Read FASTA file
+with open(filename, "r") as file:
     lines = file.readlines()
 
-# Extract sequence
 sequence = lines[1].strip()
 
-# Basic calculations
 length = len(sequence)
 
 g_count = sequence.count("G")
@@ -18,7 +23,6 @@ gc_percentage = (gc_count / length) * 100
 at_count = length - gc_count
 at_percentage = (at_count / length) * 100
 
-# Professional Output
 print("===== DNA Sequence Analysis =====")
 print("Sequence:", sequence)
 print("Length:", length)
